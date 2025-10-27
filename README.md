@@ -14,13 +14,13 @@ npm install promise-debouncer
 import { createDebouncer } from 'promise-debouncer';
 
 // Create a debouncer with 300ms timeout
-const debounce = createDebouncer(300);
+const isLastWithinTimeout = createDebouncer(300);
 
 // Use it in your code
 async function handleInput(value: string) {
-  const completed = await debounce();
-  
-  if (completed) {
+  const shouldRun = await isLastWithinTimeout();
+
+  if (shouldRun) {
     // This call completed - do your work
     console.log('Debounce completed, processing:', value);
   } else {
